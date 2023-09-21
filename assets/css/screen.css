@@ -1,0 +1,54 @@
+.btn {font-size: 14px;}
+.btn.btn-blue {
+	background: #192440;
+	border: 1px solid #192440;
+	border-radius: 55px;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	padding: 13px 28px !important;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 140%;
+	text-align: left;
+	transition: .3s ease-in-out !important;
+}
+.btn.btn-blue:hover {
+	background: #4C86CA;
+	border:1px solid #4C86CA;
+	transform: translate(0px, -6px)
+}
+.btn.btn-blue i {font-size:22px; float:left;}
+.btn.btn-blue span {display:inline-block; line-height:150%;}
+.btn.btn-light {
+	margin: 0 auto;
+	background: #4C86CA;
+	color: #fff;
+	text-transform: uppercase;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	padding: 10px 25px !important;
+	border-radius: 55px;
+}
+.btn.btn-light:hover {
+	background: #192440;
+}
+.btn small {display: block; margin-top:2px; margin-bottom: 3px; line-height:100%;}
+.modal.show {}
+.modal-content {border:0; border-radius:0;}
+.modal-header {border:0; text-align: center;}
+.modal-header h4 {margin: 0 auto; font-size:30px; text-align:center; font-weight:bold; color:#192440;}
+h5 {font-weight:bold; color:#4C86CA;}
+.close {
+	position:absolute; 
+	right: 15px; top: 15px;
+}
+.close span {
+	display: block;
+	width: 30px;
+    height: 30px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    background: #192440;
+    color: #fff;
+}
+.modal-body {padding-right:2rem; padding-left: 2rem;}
+.modal-body a {color:#4C86CA; font-weight:bold;}
