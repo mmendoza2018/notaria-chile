@@ -1,9 +1,10 @@
 <?php 
 require_once("conexion.php");
-include("reserva_mail.php");
+require("genera_codigo.php");
+require("reserva_mail.php");
 
 $nombres = @$_POST["nombres"];
-$mailfrom = @$_POST["mailfrom"];
+$correo = @$_POST["mailfrom"];
 $apellidop = @$_POST["apellidop"];
 $apellidom = @$_POST["apellidom"];
 $rut = @$_POST["rut"];
@@ -31,6 +32,10 @@ $documento_seleccionado = @$_POST["documento_seleccionado"];
  $resHorarios = mysqli_query($conexion, "SELECT * FROM horarios WHERE id = '$idHorario'");
  $horario = mysqli_fetch_assoc($resHorarios);
 
+ //generamos el codigo de la reserva
+ 
+$longitud = 10;
+$codigoReserva = generarCadenaAleatoria($longitud);
 
 $arrayData = [
   "documento" => $documento["nombre"],
@@ -38,14 +43,15 @@ $arrayData = [
   "nombre" => $nombres . "" . $apellidop . "" . $apellidom,
   "rut" => $rut,
   "telefono" => $telefono,
-  "correo" => $mailfrom,
+  "correo" => $correo,
   "horario" => $horario["hora"] . $horario["tipo"],
+  "codigoReserva" => $codigoReserva,
 ];
 
-$envioCorreo = envio_pdf( $arrayData );
+$envioCorreo = envio_pdf( $arrayData, $arrayData["correo"] );
+$envioCorreo_notaria = envio_pdf_notaria( $arrayData, $notaria["correo"] );
 
-
- if ($envioCorreo) {
+ if ($envioCorreo && $envioCorreo_notaria) {
 
   //insertamos al usuario 
   $conInsertUsu = "INSERT INTO usuarios (
@@ -59,7 +65,7 @@ $envioCorreo = envio_pdf( $arrayData );
                                         VALUES
                                         (
                                         '$nombres',  
-                                        '$mailfrom',  
+                                        '$correo',  
                                         '$apellidop',  
                                         '$apellidom',  
                                         '$rut',  
@@ -79,21 +85,24 @@ if ($resUsuario) {
                                     usuario,	
                                     notaria,	
                                     horario,	
-                                    fecha
+                                    documento,	
+                                    fecha,
+                                    codigo
                                     )
                                     VALUES 
                                     (
                                       $idUltimoUsu,
                                       $idNotaria,
                                       $idHorario,
-                                      '$fecha'
+                                      $documento_seleccionado,
+                                      '$fecha',
+                                      '$codigoReserva'
                                     )";
   $resReserva = mysqli_query($conexion, $conInsertRe);
   echo ($resReserva) ?  json_encode(true) : json_encode(false);
 }
-
    
  } else {
-  json_encode(false);
+  echo json_encode(false);
  }
 

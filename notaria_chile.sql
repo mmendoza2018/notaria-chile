@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3310
--- Tiempo de generación: 19-09-2023 a las 01:13:52
+-- Tiempo de generación: 26-09-2023 a las 01:41:27
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -167,7 +167,7 @@ CREATE TABLE `notarias` (
 
 INSERT INTO `notarias` (`id`, `nombre`, `direccion`, `latitud`, `longitud`, `referencia`, `comuna`, `correo`) VALUES
 (1, '1° Cuadra Gazmuri', 'Huérfanos 1160', '324', '34', 'Metro La Moneda', 'Santiago Centro', 'reservanotaria@notariacuadra.cl'),
-(2, '7° María Soledad Santos', 'Agustinas 1161, entrepiso, Of. 18', '58', '56', 'Metro La Moneda', 'Santiago Centro', 'reservanotaria@notariasantos.cl'),
+(2, '7° María Soledad Santos', 'Agustinas 1161, entrepiso, Of. 18', '58', '56', 'Metro La Moneda', 'Santiago Centro', 'mendozatlv2018@gmail.com'),
 (3, '9° Pablo González Caamaño', 'Teatinos 333, entrepiso', '436', '653', 'Metro Santa Ana', 'Santiago Centro', 'reservanotaria@novenanotaria.cl'),
 (4, '12° Pablo Piedrabuena', 'Teatinos 371 oficina 113', '2352', '23', 'Metro Santa Ana', 'Santiago Centro', ''),
 (5, '13° Pablo Hales', 'Compañía de Jesús 1312', '987', '654', 'Metro Santa Ana', 'Santiago Centro', 'reservanotaria@notariahales.cl'),
@@ -200,40 +200,29 @@ CREATE TABLE `reservas` (
   `usuario` int(11) NOT NULL,
   `notaria` int(11) NOT NULL,
   `horario` int(11) NOT NULL,
+  `documento` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `hora_fin` varchar(45) DEFAULT NULL,
-  `fecha_creacion` datetime DEFAULT current_timestamp()
+  `fecha_creacion` datetime DEFAULT current_timestamp(),
+  `codigo` varchar(50) DEFAULT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `reservas`
 --
 
-INSERT INTO `reservas` (`id`, `usuario`, `notaria`, `horario`, `fecha`, `hora_fin`, `fecha_creacion`) VALUES
-(2, 18, 1, 1, '2023-09-07', NULL, '2023-09-06 22:56:31'),
-(3, 18, 30, 8, '2023-09-08', NULL, '2023-09-06 22:58:45'),
-(4, 29, 35, 8, '2023-09-07', '-', '2023-09-07 00:09:28'),
-(5, 30, 2, 7, '2023-09-07', NULL, '2023-09-07 00:15:59'),
-(6, 24, 2, 8, '2023-09-08', NULL, '2023-09-07 21:46:05'),
-(7, 20, 2, 7, '2023-09-09', NULL, '2023-09-08 18:53:31'),
-(8, 29, 2, 6, '2023-09-09', '-', '2023-09-08 19:03:23'),
-(9, 31, 2, 5, '2023-09-09', NULL, '2023-09-09 12:21:27'),
-(10, 32, 2, 12, '2023-09-09', NULL, '2023-09-09 12:22:50'),
-(11, 33, 2, 7, '2023-09-10', NULL, '2023-09-09 12:24:23'),
-(12, 34, 2, 7, '2023-09-10', NULL, '2023-09-09 12:26:45'),
-(13, 35, 2, 7, '2023-09-10', NULL, '2023-09-09 12:28:55'),
-(14, 36, 2, 7, '2023-09-11', NULL, '2023-09-11 10:39:20'),
-(15, 37, 2, 7, '2023-09-11', NULL, '2023-09-11 10:47:13'),
-(16, 20, 2, 7, '2023-09-15', '-', '2023-09-13 18:14:55'),
-(17, 29, 2, 3, '2023-09-18', '-', '2023-09-13 18:16:19'),
-(18, 38, 2, 8, '2023-09-15', NULL, '2023-09-13 18:18:10'),
-(19, 39, 2, 6, '2023-09-15', NULL, '2023-09-13 18:22:07'),
-(20, 40, 2, 6, '2023-09-15', NULL, '2023-09-13 18:25:13'),
-(21, 41, 2, 9, '2023-09-15', NULL, '2023-09-13 18:29:14'),
-(22, 42, 2, 7, '2023-09-18', NULL, '2023-09-16 23:17:48'),
-(23, 43, 2, 9, '2023-09-18', NULL, '2023-09-16 23:19:59'),
-(24, 44, 2, 10, '2023-09-18', NULL, '2023-09-16 23:47:53'),
-(25, 45, 2, 8, '2023-09-18', NULL, '2023-09-18 18:09:54');
+INSERT INTO `reservas` (`id`, `usuario`, `notaria`, `horario`, `documento`, `fecha`, `hora_fin`, `fecha_creacion`, `codigo`, `estado`) VALUES
+(50, 70, 2, 5, 22, '2023-09-15', NULL, '2023-09-23 12:15:10', 'L6C95G9RWL', 0),
+(51, 71, 2, 5, 28, '2023-09-15', NULL, '2023-09-23 13:05:28', 'ZJPGJC1NFM', 0),
+(52, 72, 2, 7, 28, '2023-09-25', NULL, '2023-09-23 13:15:43', 'RAUD8H9K6X', 0),
+(53, 73, 2, 7, 28, '2023-09-26', NULL, '2023-09-23 13:17:22', 'GCQMM1KX0A', 1),
+(54, 74, 2, 7, 28, '2023-09-25', NULL, '2023-09-24 21:46:18', 'HSC492095E', 0),
+(55, 75, 2, 7, 28, '2023-09-25', NULL, '2023-09-24 21:47:47', 'SHQCMR7PJV', 1),
+(56, 76, 2, 8, 28, '2023-09-25', NULL, '2023-09-24 21:53:58', 'ROIFC3AHOM', 1),
+(57, 77, 2, 8, 28, '2023-09-25', NULL, '2023-09-24 21:55:21', 'OSYSAN1SI9', 1),
+(58, 78, 2, 8, 28, '2023-09-25', NULL, '2023-09-24 21:57:25', '9XVDYCW2ZC', 1),
+(59, 79, 2, 9, 28, '2023-09-26', NULL, '2023-09-25 18:23:35', 'EL9WXKZNJK', 0);
 
 -- --------------------------------------------------------
 
@@ -310,7 +299,41 @@ INSERT INTO `usuarios` (`id`, `nombres`, `mailfrom`, `apellidop`, `apellidom`, `
 (42, 'Voluptas rerum reici', 'wovypuhu@mailinator.com', 'Vitae dolores assume', 'Quod mollitia nemo t', '69785946-2', 1, '2023-09-16 23:17:48'),
 (43, 'fdgdfgfd', 'mendoza.ing1826@gmail.com', 'gfdgfd', 'gdfgdfg', '69785946-2', 936983242, '2023-09-16 23:19:59'),
 (44, 'Qui magnam consequat', 'mendoza.ing1826@gmail.com', 'Facilis nostrud est', 'Enim et reprehenderi', '69785946-2', 936983242, '2023-09-16 23:47:53'),
-(45, 'Andres', 'andrs.gonzez@gmail.com', 'fsdfdsfdsfs', 'apellido', '69785946-2', 5345, '2023-09-18 18:09:54');
+(45, 'Andres', 'andrs.gonzez@gmail.com', 'fsdfdsfdsfs', 'apellido', '69785946-2', 5345, '2023-09-18 18:09:54'),
+(46, 'Esse neque placeat ', 'hohubypoli@mailinator.com', 'Suscipit veniam max', 'Quam elit eiusmod e', '69785946-2', 1, '2023-09-23 10:08:01'),
+(47, 'Unde quis aliquid qu', 'mendoza.ing1826@gmail.com', 'Sint officia ea lab', 'Iste ex sapiente inc', '69785946-2', 936983242, '2023-09-23 10:09:12'),
+(48, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:11:12'),
+(49, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:12:39'),
+(50, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:13:54'),
+(51, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:14:17'),
+(52, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:15:11'),
+(53, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:16:09'),
+(54, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:17:24'),
+(55, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:18:15'),
+(56, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:18:51'),
+(57, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:19:34'),
+(58, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:28:17'),
+(59, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:30:18'),
+(60, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:30:57'),
+(61, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:31:43'),
+(62, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:32:33'),
+(63, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:33:06'),
+(64, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:33:40'),
+(65, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:34:19'),
+(66, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:34:49'),
+(67, 'Odit cumque velit v', 'mendoza.ing1826@gmail.com', 'In pariatur Deserun', 'Velit reprehenderit', '69785946-2', 936983242, '2023-09-23 10:35:10'),
+(68, 'Mollit reprehenderit', '', 'Commodi excepturi do', 'Fugiat proident ob', '69785946-2', 936983242, '2023-09-23 11:25:34'),
+(69, 'Mollit reprehenderit', '', 'Commodi excepturi do', 'Fugiat proident ob', '69785946-2', 936983242, '2023-09-23 11:32:16'),
+(70, 'Vitae delectus eaqu', '', 'Enim id velit offic', 'Veritatis dolore iru', '69785946-2', 936983242, '2023-09-23 12:15:10'),
+(71, 'Vitae delectus eaqu', 'mendoza.ing1826@gmail.com', 'Enim id velit offic', 'Veritatis dolore iru', '69785946-2', 936983242, '2023-09-23 13:05:28'),
+(72, 'Laboris delectus qu', 'mendoza.ing1826@gmail.com', 'Dolore temporibus pe', 'Aspernatur cupidatat', '69785946-2', 936983242, '2023-09-23 13:15:43'),
+(73, 'Asperiores reprehend', 'mendoza.ing1826@gmail.com', 'Quam irure nisi nequ', 'Mollitia maiores et ', '69785946-2', 936983242, '2023-09-23 13:17:22'),
+(74, 'Sint do deleniti nec', 'mendoza.ing1826@gmail.com', 'Et corporis voluptat', 'Consectetur molesti', '69785946-2', 936983242, '2023-09-24 21:46:18'),
+(75, 'Sint do deleniti nec', 'mendoza.ing1826@gmail.com', 'Et corporis voluptat', 'Consectetur molesti', '69785946-2', 936983242, '2023-09-24 21:47:47'),
+(76, 'Similique consequunt', 'mendoza.ing1826@gmail.com', 'Qui eum illum ducim', 'Reiciendis amet do ', '69785946-2', 936983242, '2023-09-24 21:53:58'),
+(77, 'Saepe quod illum ut', 'mendoza.ing1826@gmail.com', 'Est quia ut necessi', 'Ipsum qui et amet ', '69785946-2', 936983242, '2023-09-24 21:55:21'),
+(78, 'Sed quo tempor quia ', 'mendoza.ing1826@gmail.com', 'Enim excepteur ut ei', 'Beatae et ullamco do', '69785946-2', 936983242, '2023-09-24 21:57:25'),
+(79, 'Iste dolorem autem q', 'mendoza.ing1826@gmail.com', 'Amet amet eaque re', 'Eveniet dolor moles', '69785946-2', 936983242, '2023-09-25 18:23:35');
 
 --
 -- Índices para tablas volcadas
@@ -348,7 +371,8 @@ ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notaria` (`notaria`),
   ADD KEY `horario` (`horario`),
-  ADD KEY `usuario` (`usuario`);
+  ADD KEY `usuario` (`usuario`),
+  ADD KEY `documento` (`documento`);
 
 --
 -- Indices de la tabla `tipo_documento`
@@ -394,7 +418,7 @@ ALTER TABLE `notarias`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
@@ -406,7 +430,7 @@ ALTER TABLE `tipo_documento`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Restricciones para tablas volcadas
@@ -424,7 +448,8 @@ ALTER TABLE `documentos`
 ALTER TABLE `reservas`
   ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`notaria`) REFERENCES `notarias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`horario`) REFERENCES `horarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reservas_ibfk_4` FOREIGN KEY (`documento`) REFERENCES `documentos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

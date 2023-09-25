@@ -10,7 +10,7 @@ $conHorarios = "SELECT * FROM horarios WHERE estado = 1";
 $resHorarios = mysqli_query($conexion, $conHorarios);
 
 #obtenemos los horarios que ya no estan disponibles por dia 
-$conHorarariosOcupados = "SELECT * FROM reservas r INNER JOIN horarios h ON r.horario = h.id WHERE fecha = '$fecha' and notaria = $notariaId";
+$conHorarariosOcupados = "SELECT * FROM reservas r INNER JOIN horarios h ON r.horario = h.id WHERE fecha = '$fecha' and notaria = $notariaId AND r.estado = 1";
 $resHorariosOcupados = mysqli_query($conexion, $conHorarariosOcupados);
 
 $arrayHorariosGeneral = ["data" => ["fecha" => $fecha, "idNotaria" => $notariaId], "horarios" => []];

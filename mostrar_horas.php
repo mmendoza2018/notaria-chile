@@ -1,5 +1,6 @@
 <?php include_once 'php/conexion.php'; ?>
 <?php
+date_default_timezone_set('America/Santiago');
 include 'verificarPaso.php';
 
 //TRAIGO LOS DATOS DESDE EL URL Y LOS COLOCO DENTRO DE VARIABLES
@@ -45,10 +46,9 @@ include 'header.php';
         <?php
 
         // Establecemos la configuración regional en español
-        setlocale(LC_TIME, 'es_ES');
 
         // Obtenemos la fecha actual
-        $hoy = new DateTime("2023-09-15");
+        $hoy = new DateTime();
 
         // Creamos un array para almacenar las fechas
         $fechas = array();
@@ -65,12 +65,12 @@ include 'header.php';
         );
 
         // Agregamos la fecha actual al array con el día de la semana abreviado en español
-        $fechas[] = array(
+      /*   $fechas[] = array(
           "dia" => $nombresDias[$hoy->format('N') - 1], // 'N' devuelve el número del día de la semana (1 para lunes, 2 para martes, etc.)
           "fecha" => $hoy->format('Y-m-d')
         );
-
-        $diasCompletos = 1; //cuantos dias ya hay en el arreglo
+ */
+        $diasCompletos = 0; //cuantos dias ya hay en el arreglo
         // Agregamos las tres fechas siguientes al array
         while ($diasCompletos < 4) {
           $hoy->add(new DateInterval('P1D')); // Sumamos un día

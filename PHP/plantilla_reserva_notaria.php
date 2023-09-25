@@ -1,7 +1,6 @@
 <?php 
 
-function plantillaRegistro ( $arrayData ) {
-  $urlAnular = "http://localhost:5050/freelance/notaria-chile/anular.php";
+function plantillaRegistroNotaria ( $arrayData ) {
   $plantilla = '<body>
   <div class="container_general" style="width: 100%;">
     <div class="container" style="
@@ -20,11 +19,11 @@ function plantillaRegistro ( $arrayData ) {
       <div class="" style="
       padding: .3rem; width:400px; margin: 10px auto; border: 2px solid blue;">
         <h3 style="text-align: center; margin: 5px;"> Estimado(a) usuario: </h3>
-        <h4 style="text-align: center;">Ud ha Reservado una Hora en Notaria</h4>
+        <h4 style="text-align: center;">Reservaron en su notaria</h4>
         <div style="text-align:center">
           <h4 style="margin-bottom:5px">N° Reserva</h4>
           <div style="background-color:skyblue; text-transform: uppercase; width: 150px;padding:5px; font-size:18px;border-radius:20px; margin:auto;margin-bottom:8px">
-          '.$arrayData["codigoReserva"].'
+            '.$arrayData["codigoReserva"].'
           </div>
         </div>
 
@@ -71,16 +70,6 @@ function plantillaRegistro ( $arrayData ) {
         <p style="text-align: center;">
         ** La reserva de hora tendra un tope maximo de 15 minutos, luego de los cuales se anulará si cita **
         </p>
-
-        <div style="text-align:center; margin-top: 20px;margin-bottom: 20px;">
-          <a href="' .$urlAnular.'" style="appearance: button;
-          background-color: #4d4ae8; border: 1px solid #4d4ae8;
-          border-radius: 1rem;font-size: 1rem;
-          font-weight: 500;vertical-align: middle;
-          text-decoration: none;
-          font-weight: bold;color: #ffffff;padding: 0.5rem 1rem;
-          text-align: center;" type="button">Anular reserva</a>
-        </div>
         
         <div style="width: 100%; display: flex;">
         <div  style="background-color: #7ca4d4; width: 100%; padding: .3rem 0; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem;">

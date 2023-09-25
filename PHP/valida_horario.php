@@ -7,7 +7,7 @@ $notaria = $_POST["notaria"];
 $horario = $_POST["horario"];
 $fecha = $_POST["fecha"];
 
-$consulta = "SELECT * FROM reservas WHERE notaria = $notaria AND horario = $horario AND fecha = '$fecha' ";
+$consulta = "SELECT * FROM reservas WHERE notaria = $notaria AND horario = $horario AND fecha = '$fecha' AND estado = 1 ";
 $resConsulta = mysqli_query($conexion, $consulta);
 
 if (mysqli_num_rows($resConsulta) > 0) {

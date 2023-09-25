@@ -543,7 +543,7 @@ const enviarFormularioReserva = async () => {
   } else {
     Swal.fire({
       position: "center",
-      icon: "success",
+      icon: "error",
       title: "Ocurrio un error",
       showConfirmButton: false,
       timer: 3000,
@@ -624,7 +624,6 @@ const enviarFormularioContacto = async () => {
   };
   let res = await fetch("php/contacto_mail.php", options);
   let response = await res.json();
-  console.log("response :>> ", response);
 
   if (response) {
     Swal.fire({
@@ -632,6 +631,105 @@ const enviarFormularioContacto = async () => {
       icon: "success",
       title: "Se registro su reserva",
       text: "Revise su correo",
+      showConfirmButton: false,
+      timer: 3000,
+    });
+  } else {
+    if (response) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Ocurrio un error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }
+};
+
+const buscarReserva = async () => {
+  event.preventDefault();
+  if (!validarFormulario("formBuscarReserva")) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "error",
+      title: "Complete todos los campos",
+    });
+    return;
+  }
+  let formulario = document.getElementById("formBuscarReserva");
+  let data = new FormData(formulario);
+  let options = {
+    method: "post",
+    body: data,
+  };
+  const res = await fetch("php/buscar_reserva.php", options);
+  const response = await res.json();
+
+  if (response[0]) {
+    $("#reservaModal").modal("show");
+
+    const {
+      codigo,
+      documento,
+      fecha,
+      hora,
+      nombre,
+      rut,
+      telefono,
+      correo,
+      idReserva,
+    } = response[1];
+
+    document.getElementById("codigoAnularRe").innerHTML = codigo;
+    document.getElementById("documentoAnularRe").innerHTML = documento;
+    document.getElementById("fechaAnularRe").innerHTML = fecha;
+    document.getElementById("horaAnularRe").innerHTML = hora;
+    document.getElementById("nombreAnularRe").innerHTML = nombre;
+    document.getElementById("rutAnularRe").innerHTML = rut;
+    document.getElementById("telefonoAnularRe").innerHTML = telefono;
+    document.getElementById("correoAnularRe").innerHTML = correo;
+
+    document.getElementById("btnAnular").dataset.id_anular = idReserva;
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "No hay reservas coincidentes",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+};
+
+const anularReserva = async (element) => {
+  let data = new FormData();
+  data.append("idReserva", element.dataset.id_anular);
+
+  let options = {
+    method: "POST",
+    body: data,
+  };
+  const res = await fetch("php/anular_reserva.php", options);
+  const response = await res.json();
+
+  if (response) {
+    $("#reservaModal").modal("hide");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Se cancelo su reserva",
       showConfirmButton: false,
       timer: 3000,
     });
