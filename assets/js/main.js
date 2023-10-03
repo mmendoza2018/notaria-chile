@@ -4,6 +4,25 @@
  * Author: BootstrapMade.com
  * License: https://bootstrapmade.com/license/
  */
+const showLoader = () => {
+  let divLoader = `<div id="preloader"></div>`;
+  let body = document.querySelector("body");
+  body.insertAdjacentHTML("beforeend", divLoader);
+};
+
+const hideLoader = () => {
+  let preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.remove();
+  }
+};
+
+window.addEventListener("load", () => {
+  hideLoader();
+  console.log("holis");
+});
+
+
 (function () {
   "use strict";
 
@@ -170,12 +189,7 @@
   /**
    * Preloader
    */
-  let preloader = select("#preloader");
-  if (preloader) {
-    window.addEventListener("load", () => {
-      preloader.remove();
-    });
-  }
+
 
   /**
    * Initiate glightbox
@@ -510,7 +524,7 @@ const enviarFormularioReserva = async () => {
     });
     return;
   }
-
+showLoader();
   //peticion para enviar data
   let data = new FormData(document.getElementById("formReserva"));
   data.append("idNotaria", idNotaria);
@@ -525,7 +539,7 @@ const enviarFormularioReserva = async () => {
 
   let res = await fetch("php/agregar_reserva.php", options);
   let response = await res.json();
-
+hideLoader();
   if (response) {
     Swal.fire({
       position: "center",
@@ -614,6 +628,7 @@ const enviarFormularioContacto = async () => {
     });
     return;
   }
+  showLoader();
 
   //peticion para enviar data
   let data = new FormData(document.getElementById("formContacto"));
@@ -624,7 +639,7 @@ const enviarFormularioContacto = async () => {
   };
   let res = await fetch("php/contacto_mail.php", options);
   let response = await res.json();
-
+hideLoader();
   if (response) {
     Swal.fire({
       position: "center",
@@ -634,6 +649,7 @@ const enviarFormularioContacto = async () => {
       showConfirmButton: false,
       timer: 3000,
     });
+    document.getElementById("formContacto").reset()
   } else {
     if (response) {
       Swal.fire({

@@ -29,7 +29,7 @@ function envio_pdf(){
     $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     
     //Recipients
-    $mail->setFrom('administrador@gytperu.com', 'adncreativope');
+    $mail->setFrom('administradorgyt@sistema.gytperu.com', 'GYT empresarial');
     //personas que recibiran el correo
     $arrayPersonasDestinatario = [
       //["correo" => $arrayData["correo"]],

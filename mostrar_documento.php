@@ -101,7 +101,10 @@ include 'header.php';
 <br><br>
   </main><!-- End #main -->
 
-
+  <?php
+  include 'contacto.php';
+  include 'footer.php';
+  ?>
 </body>
 <script>
   //activar el boton cuando le den chck a "He leído y comprendo los requerimientos"

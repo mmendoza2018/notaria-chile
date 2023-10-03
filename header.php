@@ -4,6 +4,7 @@ include 'head.php';
 ?>
 
 <body>
+<div id="preloader"></div>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top  border shadow" style="background-color: #f1f0ef;">
     <div class="container d-flex align-items-center justify-content-between">
